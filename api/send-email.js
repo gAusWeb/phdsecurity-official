@@ -35,10 +35,19 @@ function sanitize(str) {
   });
 }
 
+const ALLOWED_ORIGINS = [
+  "https://phdsecurity.com.au",
+  "https://www.phdsecurity.com.au",
+];
+
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "https://phdsecurity.com.au");
+  const origin = req.headers.origin;
+  if (ALLOWED_ORIGINS.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Vary", "Origin");
   if (req.method === "OPTIONS") return res.status(200).end();
 
   if (req.method !== "POST") {
