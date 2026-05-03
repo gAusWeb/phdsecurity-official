@@ -13,7 +13,7 @@
     var contactForm = document.querySelector("form#contact-form");
     if (!contactForm) return;
 
-    var API_URL = "https://phdsecurity.com.au/api/send-email";
+    var API_URL = "/api/send-email";
 
     var inputs = contactForm.querySelectorAll("input, textarea");
     var inputsArray = Array.prototype.slice.call(inputs);
