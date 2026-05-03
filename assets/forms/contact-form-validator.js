@@ -20,6 +20,7 @@
 
     var emailRE = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     var isFormValid = false;
+    var formLoadTime = Date.now();
 
     function inputIsValid(input) {
       input.classList.contains("is-invalid")
@@ -126,6 +127,13 @@
           validateInputs(input);
         });
       } else {
+        // Honeypot check: bots fill hidden fields
+        var honeypot = document.getElementById("hp-website");
+        if (honeypot && honeypot.value) return;
+
+        // Timing check: reject if submitted in under 2.5 seconds
+        if (Date.now() - formLoadTime < 2500) return;
+
         grecaptcha.ready(function () {
           grecaptcha
             .execute("6LfUn2olAAAAAJ10PSWkou9NP2XomzZ7gXEwwnNz", {
@@ -137,6 +145,8 @@
                 data[input.id.replace("input-", "")] = input.value;
               });
               data.recaptchaToken = token;
+              var honeypot = document.getElementById("hp-website");
+              if (honeypot) data.hp_website = honeypot.value;
 
               fetch(API_URL, {
                 method: "POST",

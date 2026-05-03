@@ -32,6 +32,11 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <style>
+    /* Honeypot anti-spam field - must not be visible to humans */
+    .hp-field { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; pointer-events: none; tabindex: -1; }
+  </style>
+
 </head>
 
 <body>
@@ -40,7 +45,7 @@
   <section id="topbar" class="d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a style="margin-left: 0.25rem;" href="mailto:info@phdsecurity.com.au">info@phdsecurity.com.au</a></i>
+        <i class="bi bi-envelope d-flex align-items-center"><a style="margin-left: 0.25rem;" href="#" class="js-contact-email"><span class="js-email-display"></span></a></i>
         
       </div>
       <div class="social-links d-none d-md-flex align-items-center">
@@ -48,7 +53,7 @@
         <!-- <a href="#" class="facebook"><i class="bi bi-facebook"></i></a> -->
         <!-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> -->
         <!-- <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a> -->
-        <span class="bi bi-phone d-flex align-items-center ms-4"><span><a style="margin-left: 0.5rem;" href="tel:0412-034-075">0412 034 075</a></span></span>
+        <span class="bi bi-phone d-flex align-items-center ms-4"><span><a style="margin-left: 0.5rem;" href="#" class="js-contact-phone"><span class="js-phone-display"></span></a></span></span>
       </div>
     </div>
   </section>
@@ -669,7 +674,7 @@
             <div class="info-box  mb-4">
               <i class="bx bx-envelope"></i>
               <h3>Email Us</h3>
-              <p><a href="mailto:info@phdsecurity.com.au">info@phdsecurity.com.au</a></p>
+              <p><a href="#" class="js-contact-email"><span class="js-email-display"></span></a></p>
             </div>
           </div>
 
@@ -677,7 +682,7 @@
             <div class="info-box  mb-4">
               <i class="bx bx-phone-call"></i>
               <h3>Call Us</h3>
-              <p><a href="tel:0412-034-075">0412 034 075</a></p>
+              <p><a href="#" class="js-contact-phone"><span class="js-phone-display"></span></a></p>
             </div>
           </div>
         </div>
@@ -714,6 +719,11 @@
             <div class="form-group">
               <textarea id="input-message" rows="3" placeholder="Enter your message..." class="form-control" ></textarea>
               <span class="position-absolute"></span>
+            </div>
+
+            <!-- Honeypot field: hidden from users, filled only by bots -->
+            <div class="hp-field" aria-hidden="true">
+              <input type="text" name="hp_website" id="hp-website" tabindex="-1" autocomplete="off" />
             </div>
             
             <!-- <div class="g-recaptcha" data-sitekey="6Lc7cVMUAAAAAM1yxf64wrmO8gvi8A1oQ_ead1ys" class="form-control" ></div> local -->
@@ -763,8 +773,8 @@
             <p>
               Melbourne, Victoria<br>
               Australia, 3000<br><br>
-              <strong>Phone:</strong> <a href="tel:0412-034-075">0412 034 075</a><br>
-              <strong>Email:</strong> info@phdsecurity.com.au<br>
+              <strong>Phone:</strong> <a href="#" class="js-contact-phone"><span class="js-phone-display"></span></a><br>
+              <strong>Email:</strong> <span class="js-email-display"></span><br>
             </p>
           </div>
 
